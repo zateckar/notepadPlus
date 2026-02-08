@@ -1,0 +1,136 @@
+/*
+ * Resource file for Notepad+
+ */
+
+#include <windows.h>
+#include "../src/resource.h"
+
+/* Application manifest for DPI awareness and visual styles */
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "notepad+.manifest"
+
+/* Main menu */
+IDR_MAINMENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",           ID_FILE_NEW
+        MENUITEM "&Open\tCtrl+O",          ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Save\tCtrl+S",          ID_FILE_SAVE
+        MENUITEM "Save &As...\tCtrl+Shift+S", ID_FILE_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                  ID_FILE_EXIT
+    END
+    
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",          ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",          ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",           ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",          ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",         ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",    ID_EDIT_SELECTALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Find\tCtrl+F",          ID_EDIT_FIND
+        MENUITEM "&Replace\tCtrl+H",       ID_EDIT_REPLACE
+        MENUITEM "Find &Next\tF3",         ID_EDIT_FINDNEXT
+        MENUITEM "Find &Previous\tShift+F3", ID_EDIT_FINDPREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Go To Line...\tCtrl+G", ID_EDIT_GOTOLINE
+    END
+    
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",               ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",            ID_VIEW_STATUSBAR
+        MENUITEM SEPARATOR
+        MENUITEM "Line &Numbers",          ID_VIEW_LINE_NUMBERS
+        MENUITEM "Show &Whitespace",       ID_VIEW_WHITESPACE
+        MENUITEM "&Code Folding",          ID_VIEW_CODEFOLDING
+        MENUITEM SEPARATOR
+        MENUITEM "Word &Wrap",             ID_VIEW_WORD_WRAP
+        MENUITEM SEPARATOR
+        MENUITEM "&Split View",            ID_VIEW_SPLITVIEW
+        MENUITEM "Load &Left Pane",        ID_VIEW_SPLITVIEW_LOADLEFT
+        MENUITEM "Load &Right Pane",       ID_VIEW_SPLITVIEW_LOADRIGHT
+    END
+    
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "&Preferences...",        ID_OPTIONS_PREFERENCES
+        MENUITEM SEPARATOR
+        MENUITEM "&Dark Theme",            ID_OPTIONS_THEME_DARK
+        MENUITEM "&Light Theme",           ID_OPTIONS_THEME_LIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "Install &Shell Integration...",    ID_OPTIONS_INSTALL_SHELL
+        MENUITEM "Uninstall S&hell Integration...",  ID_OPTIONS_UNINSTALL_SHELL
+        MENUITEM SEPARATOR
+        MENUITEM "Register &File Associations...",   ID_OPTIONS_REGISTER_FILES
+        MENUITEM "Unregister File A&ssociations...", ID_OPTIONS_UNREGISTER_FILES
+    END
+    
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                 ID_HELP_ABOUT
+    END
+END
+
+/* String resources */
+STRINGTABLE
+BEGIN
+    IDS_APP_TITLE        "Notepad+"
+    IDS_FILE_FILTER      "Text Files (*.txt)\0*.txt\0All Files (*.*)\0*.*\0"
+    IDS_ALL_FILES_FILTER "All Files (*.*)\0*.*\0"
+END
+
+/* Toolbar */
+IDR_TOOLBAR TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_TOOLBAR_NEW
+    BUTTON      ID_TOOLBAR_OPEN
+    BUTTON      ID_TOOLBAR_SAVE
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_CUT
+    BUTTON      ID_TOOLBAR_COPY
+    BUTTON      ID_TOOLBAR_PASTE
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_FIND
+    BUTTON      ID_TOOLBAR_REPLACE
+END
+
+/* Accelerator table */
+IDR_ACCELERATORS ACCELERATORS
+BEGIN
+    /* File operations */
+    "N",     ID_FILE_NEW,         VIRTKEY, CONTROL, NOINVERT
+    "O",     ID_FILE_OPEN,        VIRTKEY, CONTROL, NOINVERT
+    "S",     ID_FILE_SAVE,        VIRTKEY, CONTROL, NOINVERT
+    "S",     ID_FILE_SAVEAS,      VIRTKEY, CONTROL, SHIFT, NOINVERT
+    "Q",     ID_FILE_EXIT,        VIRTKEY, CONTROL, NOINVERT
+    
+    /* Edit operations */
+    "Z",     ID_EDIT_UNDO,        VIRTKEY, CONTROL, NOINVERT
+    "Y",     ID_EDIT_REDO,        VIRTKEY, CONTROL, NOINVERT
+    "X",     ID_EDIT_CUT,         VIRTKEY, CONTROL, NOINVERT
+    "C",     ID_EDIT_COPY,        VIRTKEY, CONTROL, NOINVERT
+    "V",     ID_EDIT_PASTE,       VIRTKEY, CONTROL, NOINVERT
+    "A",     ID_EDIT_SELECTALL,   VIRTKEY, CONTROL, NOINVERT
+    "F",     ID_EDIT_FIND,        VIRTKEY, CONTROL, NOINVERT
+    "H",     ID_EDIT_REPLACE,     VIRTKEY, CONTROL, NOINVERT
+    
+    /* Find operations */
+    VK_F3,   ID_EDIT_FINDNEXT,    VIRTKEY, NOINVERT
+    VK_F3,   ID_EDIT_FINDPREV,    VIRTKEY, SHIFT, NOINVERT
+    "G",     ID_EDIT_GOTOLINE,    VIRTKEY, CONTROL, NOINVERT
+    
+    /* Tab operations */
+    "W",     ID_TAB_CLOSE,        VIRTKEY, CONTROL, NOINVERT
+    VK_TAB,  ID_TAB_NEXT,         VIRTKEY, CONTROL, NOINVERT
+    VK_TAB,  ID_TAB_PREV,         VIRTKEY, CONTROL, SHIFT, NOINVERT
+END
+
+/* Application icon - used for window, taskbar, and file associations */
+IDI_APPICON      ICON "notepad+.ico"
+IDI_APPICONSMALL ICON "notepad+.ico"

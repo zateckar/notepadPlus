@@ -1,0 +1,56 @@
+# Build artifacts - Object files
+obj/
+*.o
+*.obj
+
+# Build artifacts - Libraries
+*.a
+*.lib
+*.dll
+
+# Build artifacts - Executables
+bin/*.exe
+*.exe
+
+# Build artifacts - Debug files
+*.pdb
+*.ilk
+*.exp
+*.manifest.res
+*.res
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Dependency files
+*.d
+*.dep
+
+# IDE - Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.filters
+
+# IDE - VS Code
+.vscode/settings.json
+.vscode/*.log
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*~
+
+# Generated files
+obj/lexilla/version.txt
+obj/scintilla/version.txt
