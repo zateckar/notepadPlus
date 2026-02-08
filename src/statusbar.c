@@ -14,8 +14,8 @@
 #include "themes.h"
 #include "syntax.h"
 
-/* Debug output for profiling */
-#define DEBUG_STATUSBAR_INIT 1
+/* Debug output for profiling - set to 1 to enable timing output (debug builds only) */
+#define DEBUG_STATUSBAR_INIT 0
 
 #if DEBUG_STATUSBAR_INIT
 #include <stdio.h>

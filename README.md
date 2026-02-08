@@ -2,6 +2,8 @@
 
 A fast, lightweight text editor written in C using Win32 API and Scintilla, focused on achieving the fastest possible startup time while maintaining comprehensive features.
 
+![alt text]({ECCE05B1-8401-43E7-AD17-6C7636B41D6E}.png)
+
 ## Features
 
 - **Core Editing**: Full text editing with Scintilla component
@@ -30,14 +32,9 @@ Download the latest release from the [GitHub Releases](../../releases) page.
 
 ### Installation Methods
 
-#### Option 1: Portable (No Installation Required)
+#### Portable (No Installation Required)
 1. Download `NotepadPlus-Windows.zip` from the latest release
 2. Extract to any folder
-3. Run `notepad+.exe` directly
-
-#### Option 2: Full Installation (With Shell Integration)
-1. Download `NotepadPlus-Windows.zip` from the latest release
-2. Extract to your desired installation folder (e.g., `C:\Program Files\Notepad+`)
 3. Run `notepad+.exe` and use the Options menu to install shell integration:
    - **Options → Install Shell Integration** - Adds "Open with Notepad+" to context menus
    - **Options → Register File Associations** - Associates file types with Notepad+

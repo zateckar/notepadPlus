@@ -1,7 +1,5 @@
 # Build artifacts - Object files
 obj/
-*.o
-*.obj
 
 # Build artifacts - Libraries
 *.a
@@ -9,8 +7,7 @@ obj/
 *.dll
 
 # Build artifacts - Executables
-bin/*.exe
-*.exe
+bin/
 
 # Build artifacts - Debug files
 *.pdb
