@@ -41,7 +41,7 @@ jobs:
     - name: Generate lexer mappings
       shell: msys2 {0}
       run: |
-        python tools/generate_lexer_code.py
+        "$pythonLocation"/python.exe tools/generate_lexer_code.py
 
     - name: Build Application
       shell: msys2 {0}
