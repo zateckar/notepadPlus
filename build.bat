@@ -27,9 +27,10 @@ REM   -flto: Link-time optimization for better cross-module inlining
 REM   -s: Strip symbols for smaller binary
 REM   -fomit-frame-pointer: Free up a register for better performance
 REM   -ffast-math: Faster floating-point operations (safe for this app)
+REM   -static: Statically link runtime libraries (libstdc++, libwinpthread)
 set CFLAGS=-O3 -flto -s -fomit-frame-pointer -Wall -Wextra -std=c99
 set CXXFLAGS=-O3 -flto -s -fomit-frame-pointer -Wall -Wextra -std=c++17
-set LDFLAGS=-flto -s
+set LDFLAGS=-flto -s -static
 
 REM Read current source versions
 set /p SCI_VERSION=<scintilla\version.txt
