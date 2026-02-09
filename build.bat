@@ -206,7 +206,7 @@ g++ -c %WIN32_SRC%/SurfaceD2D.cxx -o obj/scintilla/SurfaceD2D.o %SCI_CFLAGS% || 
 g++ -c %WIN32_SRC%/ScintillaWin.cxx -o obj/scintilla/ScintillaWin.o %SCI_CFLAGS% || exit /b 1
 
 echo Creating Scintilla static library...
-ar rcs obj/scintilla/libscintilla.a obj/scintilla/*.o
+ar rcs obj/scintilla/libscintilla.a obj/scintilla/AutoComplete.o obj/scintilla/CallTip.o obj/scintilla/CaseConvert.o obj/scintilla/CaseFolder.o obj/scintilla/CellBuffer.o obj/scintilla/ChangeHistory.o obj/scintilla/CharacterCategoryMap.o obj/scintilla/CharacterType.o obj/scintilla/CharClassify.o obj/scintilla/ContractionState.o obj/scintilla/DBCS.o obj/scintilla/Decoration.o obj/scintilla/Document.o obj/scintilla/EditModel.o obj/scintilla/Editor.o obj/scintilla/EditView.o obj/scintilla/Geometry.o obj/scintilla/Indicator.o obj/scintilla/KeyMap.o obj/scintilla/LineMarker.o obj/scintilla/MarginView.o obj/scintilla/PerLine.o obj/scintilla/PositionCache.o obj/scintilla/RESearch.o obj/scintilla/RunStyles.o obj/scintilla/Selection.o obj/scintilla/Style.o obj/scintilla/UndoHistory.o obj/scintilla/UniConversion.o obj/scintilla/UniqueString.o obj/scintilla/ViewStyle.o obj/scintilla/XPM.o obj/scintilla/ScintillaBase.o obj/scintilla/HanjaDic.o obj/scintilla/PlatWin.o obj/scintilla/ListBox.o obj/scintilla/SurfaceGDI.o obj/scintilla/SurfaceD2D.o obj/scintilla/ScintillaWin.o
 echo Scintilla static library built successfully
 exit /b 0
 
@@ -221,29 +221,46 @@ set LEX_SRC=lexilla/src
 set LEXLIB_SRC=lexilla/lexlib
 set LEXERS_SRC=lexilla/lexers
 
+REM Initialize object file list
+set LEX_OBJS=
+
 REM Lexilla core
 g++ -c %LEX_SRC%/Lexilla.cxx -o obj/lexilla/Lexilla.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/Lexilla.o
 
 REM Lexlib files
 g++ -c %LEXLIB_SRC%/Accessor.cxx -o obj/lexilla/Accessor.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/Accessor.o
 g++ -c %LEXLIB_SRC%/CharacterCategory.cxx -o obj/lexilla/CharacterCategory.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/CharacterCategory.o
 g++ -c %LEXLIB_SRC%/CharacterSet.cxx -o obj/lexilla/CharacterSet.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/CharacterSet.o
 g++ -c %LEXLIB_SRC%/DefaultLexer.cxx -o obj/lexilla/DefaultLexer.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/DefaultLexer.o
 g++ -c %LEXLIB_SRC%/InList.cxx -o obj/lexilla/InList.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/InList.o
 g++ -c %LEXLIB_SRC%/LexAccessor.cxx -o obj/lexilla/LexAccessor.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/LexAccessor.o
 g++ -c %LEXLIB_SRC%/LexerBase.cxx -o obj/lexilla/LexerBase.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/LexerBase.o
 g++ -c %LEXLIB_SRC%/LexerModule.cxx -o obj/lexilla/LexerModule.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/LexerModule.o
 g++ -c %LEXLIB_SRC%/LexerSimple.cxx -o obj/lexilla/LexerSimple.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/LexerSimple.o
 g++ -c %LEXLIB_SRC%/PropSetSimple.cxx -o obj/lexilla/PropSetSimple.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/PropSetSimple.o
 g++ -c %LEXLIB_SRC%/StyleContext.cxx -o obj/lexilla/StyleContext.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/StyleContext.o
 g++ -c %LEXLIB_SRC%/WordList.cxx -o obj/lexilla/WordList.o %LEX_CFLAGS% || exit /b 1
+set LEX_OBJS=!LEX_OBJS! obj/lexilla/WordList.o
 
 REM Compile ALL lexer files (Lexilla.cxx references them all in its static table)
 for %%f in (%LEXERS_SRC%\Lex*.cxx) do (
     g++ -c %%f -o obj/lexilla/%%~nf.o %LEX_CFLAGS% || exit /b 1
+    set LEX_OBJS=!LEX_OBJS! obj/lexilla/%%~nf.o
 )
 
 echo Creating Lexilla static library...
-ar rcs obj/lexilla/liblexilla.a obj/lexilla/*.o
+ar rcs obj/lexilla/liblexilla.a !LEX_OBJS!
 echo Lexilla static library built successfully
 exit /b 0
