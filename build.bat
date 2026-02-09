@@ -12,9 +12,14 @@ if not exist obj\lexilla mkdir obj\lexilla
 if not exist bin mkdir bin
 
 REM Generate lexer mappings from GitHub Linguist data
+REM Skip if running in CI (already generated in workflow) or if files already exist
 echo Generating lexer mappings...
-python tools/generate_lexer_code.py
-if errorlevel 1 echo Error generating lexer mappings && exit /b 1
+if exist src\lexer_mappings_generated.c (
+    echo Lexer mappings already exist, skipping generation...
+) else (
+    python tools/generate_lexer_code.py
+    if errorlevel 1 echo Error generating lexer mappings && exit /b 1
+)
 
 REM Compiler optimization flags:
 REM   -O3: Maximum optimization for speed
