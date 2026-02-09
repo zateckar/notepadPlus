@@ -50,6 +50,7 @@ jobs:
     - name: Build Application
       shell: msys2 {0}
       run: |
+        export PATH="$pythonLocation:$PATH"
         ./build.bat
 
     - name: Package Application
