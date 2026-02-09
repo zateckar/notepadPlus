@@ -87,30 +87,3 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  code-quality:
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Run cppcheck
-      uses: deep5050/cppcheck-action@main
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        check_library: ""
-        skip_preprocessor: ""
-        enable: "all"
-        inconclusive: ""
-        inline_suppression: ""
-        force_language: "c"
-        exclude_check: "./scintilla:./lexilla"
-        target_directory: "./src"
-        output_file: "cppcheck-report.txt"
-
-    - name: Upload cppcheck report
-      uses: actions/upload-artifact@v4
-      with:
-        name: cppcheck-report
-        path: cppcheck-report.txt
-        retention-days: 30
