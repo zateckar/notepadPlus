@@ -74,13 +74,11 @@ jobs:
         retention-days: 30
 
     - name: Create ZIP Archive
-      if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
       shell: powershell
       run: |
         Compress-Archive -Path "dist\NotepadPlus\*" -DestinationPath "dist\NotepadPlus-Windows.zip"
 
     - name: Create Release
-      if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
       uses: softprops/action-gh-release@v1
       with:
         files: |
