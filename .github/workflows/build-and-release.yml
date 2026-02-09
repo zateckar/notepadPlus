@@ -14,7 +14,9 @@ env:
 jobs:
   build:
     runs-on: windows-latest
-    
+    permissions:
+      contents: write
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -56,51 +58,10 @@ jobs:
         # Copy executable
         Copy-Item "bin\notepad+.exe" "dist\NotepadPlus\"
         
-        # Copy configuration files
-        Copy-Item "langs.model.xml" "dist\NotepadPlus\"
-        
         # Copy license file
         Copy-Item "LICENSE" "dist\NotepadPlus\"
         
-        # Create portable README
-        @"
-Notepad+ - Lightweight Text Editor
-===================================
-
-Installation:
--------------
-1. Simply run notepad+.exe for portable usage
-2. For Windows integration, use the Options menu:
-   - Options → Install Shell Integration
-   - Options → Register File Associations
-
-Features:
----------
-- Fast startup (<40ms target)
-- Syntax highlighting for major languages
-- Dark and Light themes
-- Tabbed interface
-- Session management
-- Shell integration (optional)
-
-Files:
-------
-- notepad+.exe       - Main executable
-- langs.model.xml    - Language definitions
-
-Uninstall:
-----------
-Use the Options menu to uninstall:
-- Options → Uninstall Shell Integration
-- Options → Unregister File Associations
-
-Then simply delete the application folder.
-
-License:
---------
-See LICENSE file or source repository for licensing information.
-"@ | Out-File -FilePath "dist\NotepadPlus\README.txt" -Encoding UTF8
-
+  
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v4
       with:
@@ -128,7 +89,7 @@ See LICENSE file or source repository for licensing information.
 
   code-quality:
     runs-on: windows-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
