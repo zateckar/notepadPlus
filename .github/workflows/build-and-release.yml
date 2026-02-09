@@ -32,7 +32,6 @@ jobs:
           mingw-w64-x86_64-gcc
           mingw-w64-x86_64-binutils
           mingw-w64-x86_64-make
-          mingw-w64-x86_64-windres
 
     - name: Setup Python
       uses: actions/setup-python@v5
@@ -86,4 +85,3 @@ jobs:
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
