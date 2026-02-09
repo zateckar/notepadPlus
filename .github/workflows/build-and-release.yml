@@ -38,6 +38,10 @@ jobs:
       with:
         python-version: '3.x'
 
+    - name: Install Python dependencies
+      run: |
+        pip install pyyaml requests
+
     - name: Generate lexer mappings
       shell: msys2 {0}
       run: |
